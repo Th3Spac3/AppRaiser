@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+ --index: calc(1vh + 1vw)
+}
+.main__body{
+    background-color: #000;
+    color: #fff;
+    font-family: Impact;
+}
+.layers{
+    perspective: 1000px;
+}
+.layers__container{
+    height: 100vh;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+
+}
+.layers__item{
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    inset: -5vw;
+}
+.layer1{
+    transform: translateZ(-40px);
+}
+.layer2{
+    transform: translateZ(80px);
+}
+.layer3{
+    transform: translateZ(160px);
+}
+.layer4{
+    transform: translateZ(240px);
+}
