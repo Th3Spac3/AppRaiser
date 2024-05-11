@@ -1,0 +1,57 @@
+<div class="layers__item layer__work">
+  <ul class="vertical__bar">
+    <li>
+      <ul class="horizontal__bar">
+        <% for theme in @themes %>
+          <li>
+            <%= link_to theme.name, work_path(theme: theme.id), class: 'list__item link__button' %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <li>
+      <ul class="horizontal__bar">
+        <li><%= link_to image_tag('arrow_l.png', size: '32x32'), image: -1, theme: params[:theme], counter: params[:counter] %></li>
+        <li><%= image_tag(@images.blank? ? 'pictures/ph.png' : @images.pluck(:file)[params[:counter].blank? ? 0 : params[:counter].to_i]) %></li>
+        <li><%= link_to image_tag('arrow_r.png', size: '32x32'), image: 1, theme: params[:theme], counter: params[:counter] %></li>
+      </ul>
+    </li>
+    <li>
+      <ul class="horizontal__bar">
+        <li>
+          <% if !@images.blank? %>
+            <div>Средняя оценка:</div>
+          <%= @images.pluck(:average_value)[params[:counter].blank? ? 0 : params[:counter].to_i] %>
+          <% end %>
+        </li>
+        <li>
+          <div>Ваша оценка:</div>
+          <% if Value.user_valued_exists(current_user.id, @images.pluck(:id)[params[:counter].blank? ? 0 : params[:counter].to_i]) == 1 %>
+            <%= Value.get_user_image_value(current_user.id, @images.pluck(:id)[params[:counter].blank? ? 0 : params[:counter].to_i]).pluck(:value)[0] %>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+    <li>
+        <ul class="horizontal__bar">
+          <%= form_for :values, url: 'values/set_range_value' do |form| %>
+          <li>
+            <%= form.range_field :value, :min=>0, :max=>10, :class=>'slider', :id=>'eqz', :value=>0 %>
+            <% if !@images.blank? %>
+              <%= form.hidden_field :image_id, :value=>@images.pluck(:id)[params[:counter].blank? ? 0 : params[:counter].to_i] %>
+            <% end %>
+            <% if !params[:theme].blank? %>
+              <%= form.hidden_field :theme, :value=>params[:theme] %>
+            <% end %>
+            <% if !params[:counter].blank? %>
+              <%= form.hidden_field :counter, :value=>params[:counter] %>
+            <% end %>
+          </li>
+          <li>
+            <%= form.submit class: 'link__button' %>
+          </li>
+          <% end %>
+        </ul>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+
+<div class="layers__item layer__work">
+  <%= form_for :session, url: 'session/create' do |form| %>
+    <ul class="vertical__bar">
+      <li><%= form.label :email, style: 'display: block' %></li>
+      <li><%= form.text_field :email %></li>
+      <li><%= form.label :password, style: 'display: block' %></li>
+      <li><%= form.password_field :password %></li>
+      <li><%= form.submit 'Войти', class: 'link_button' %></li>
+      <li><%= link_to 'Регистрация', new_user_path, class: 'link__button' %></li>
+    </ul>
+  <% end %>
+</div>

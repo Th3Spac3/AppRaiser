@@ -3,10 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
-:root {
- --index: calc(1vh + 1vw)
+@font-face {
+    font-family: Steamy;
+    src: url("Steamy.otf");
 }
-.main__body{
+.text{
+    font-family: Steamy;
+    font-size: 100pt;
+    color: #b5a651;
+    --stroke-width: 3px;
+    text-shadow:var(--stroke-width) 0 0 #8b7f3f,0 var(--stroke-width) 0 #8b7f3f,var(--stroke-width) 0 0 #8b7f3f,0 var(--stroke-width) 0 #8b7f3f;
+}
+:root {
+ --index: calc(1vh + 1vw);
+ --transition: 1s cubic-bezier(.05, .5, 0, 1);
+}
+.body{
     background-color: #000;
     color: #fff;
     font-family: Impact;
@@ -18,6 +30,8 @@
     height: 100vh;
     transform-style: preserve-3d;
     transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+    will-change: transform;
+    transition: transform(var(--transition))
 
 }
 .layers__item{
@@ -25,16 +39,72 @@
     background-size: cover;
     background-position: center;
     inset: -5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .layer1{
     transform: translateZ(-40px);
 }
 .layer2{
-    transform: translateZ(80px);
+    transform: translateZ(-10px);
 }
 .layer3{
     transform: translateZ(160px);
 }
 .layer4{
-    transform: translateZ(240px);
+    transform: translateZ(240px);;
+}
+.layer__header{
+    transform: translateZ(250px);
+    background-size: contain;
+    top: -90%;
+    right: -10%;
+}
+.layer__work{
+    vertical-align: middle;
+    top: 25%;
+    height: 50%;
+    transform: translateZ(250px);
+}
+.layer__footer{
+    transform: translateZ(250px);
+    top: 90%;
+    height: 10%;
+    background-size: contain;
+    width: 100%;
+}
+.horizontal__bar{
+    align-items: center;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+.vertical__bar{
+    list-style: none;
+    gap: 10px;
+}
+
+.list__item{
+    width: auto;
+    float: left;
+}
+
+.layer1, .layer2, .layer3, .layer4 {
+    pointer-events: none;
+}
+
+.link__button{
+    background-color: #303030;
+    border-color: #f8f4b3;
+    border-width: 2px;
+    border-radius: 10px;
+    color: white;
+    font-family: Steamy;
+    text-decoration: none;
+}
+
+.link__button:hover {
+    background-color: #3b3b3b;
+    border-color: #faf6be;
 }

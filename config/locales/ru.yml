@@ -1,0 +1,9 @@
+ru:
+  main:
+    login:
+      sign_in: 'Вход'
+      sign_out: 'Выход'
+    about: 'О нас'
+    contacts: 'Контакты'
+    help: 'Помощь'
+    work: 'Оценка'

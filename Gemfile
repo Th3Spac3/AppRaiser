@@ -8,8 +8,18 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use postgresql as the database for Active Record
+gem "pg", "<= 1.5.5"
+# , '~> 0.18' - явное указание на версию
+gem "activerecord-reset-pk-sequence"
+
+# Use ActiveModel has_secure_password
+gem "bcrypt"
+gem "active_model_serializers"
+
+gem "jquery-rails", "~> 4.6"
+
+gem 'jw_player_rails', '~> 0.1.23'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"

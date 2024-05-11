@@ -1,0 +1,22 @@
+<div class="layers__item layer__header">
+  <ul class="horizontal__bar">
+    <li><%=link_to t('main.about'), main_about_path, class: 'list__item link__button' %></li>
+    <li><%=link_to t('main.contacts'), main_contacts_path, class: 'list__item link__button' %></li>
+    <li><%=link_to t('main.help'), main_help_path, class: 'list__item link__button' %></li>
+    <% if signed_in? %>
+      <li><%= link_to t('main.work'), work_path, class: 'list__item link__button' %>></li>
+      <li><%= link_to @current_user.name, work_profile_path, class: 'list__item link__button' %></li>
+      <li><%= gravatar_for current_user %></li>
+      <li><%= link_to t('main.login.sign_out'), session_destroy_path, method: 'delete', class: 'list__item link__button' %></li>
+    <% else %>
+      <li><%= link_to t('main.login.sign_in'), signin_path, class: 'list__item link__button' %></li>
+    <% end %>
+    <li>
+      <%= link_to image_tag('ru.png', size: '32x32'), locale: :ru %>
+    </li>
+    <li>
+      <%=link_to image_tag('en.png', size: '32x32'), locale: :en %>
+    </li>
+  </ul>
+</div>
+<%= video_tag("header.webm", autoplay: true, loop:true, muted: true, class: "layers__item layer4")%>
